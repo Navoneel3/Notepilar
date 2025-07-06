@@ -10,6 +10,10 @@ const NoteCard = ({note,setNotes}) => {
 
   const handleDelete=async(e,id)=>{
     e.preventDefault();
+     if (!id) {
+    toast.error("Note ID is missing!");
+    return;
+  }
     if(!window.confirm("Are you sure you want to delete!"))return;
     try {
       await api.delete(`/notes/${id}`);
